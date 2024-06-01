@@ -10,7 +10,7 @@
       </div>
       <div class="food-slider">
         <div class="sliding-system">
-        @foreach ($categories as $category)
+        {{-- @foreach ($categories as $category)
             <a href="/menu/{{$category->title}}" class="slide">
               <div class="background"></div>
               <div class="content">
@@ -25,7 +25,7 @@
                 </div>
               </div>
           </a>
-        @endforeach
+        @endforeach --}}
           
           
         </div>

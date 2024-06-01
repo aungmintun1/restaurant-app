@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{$foodItem}} - {{$settings["general"]->site_title}} 
+{{-- {{$foodItem}} - {{$settings["general"]->site_title}}  --}}
 @endsection
 
 @section('content')
@@ -13,9 +13,9 @@
           <div class="content-box">
             <div class="row">
               <div class="col-md-12">
-                <h1>{{$foodItem}}</h1>
+                <h1>Burgers</h1>
               </div>
-              @foreach ($foodItems as $item)
+              {{-- @foreach ($foodItems as $item)
                 <div class="col-md-6">
                   <div class="item">
                     <div class="title">
@@ -27,7 +27,7 @@
                     </div>
                   </div>
                 </div>
-              @endforeach
+              @endforeach --}}
               
               
             </div>
