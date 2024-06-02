@@ -23,7 +23,24 @@
       <li>
         <a href="/contact">Contact</a>
       </li>
-      
+      <li>
+        <a href="/admin/register">Register</a>
+      </li>
+      @if (Route::has('login'))
+      @auth
+      <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <a class="sidemenu-link" href="/logout" onclick="event.preventDefault(); this.closest('form').submit();" type="button">
+              Logout
+          </a>
+      </form>
+
+      @else
+      <li>
+        <a href="/admin/login">Login</a>
+      </li>
+      @endauth
+      @endif
     </ul>
   </div>
   <div class="social-icons">

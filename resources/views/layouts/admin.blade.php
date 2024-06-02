@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/libs/css/style.css">
     <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
@@ -16,7 +17,7 @@
     <link rel="stylesheet" href="/assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
     <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
-   
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
 <body>
@@ -123,12 +124,36 @@
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
+                                  @if (Route::has('login'))
+                                    @auth
+                                    <h5 class="mb-0 text-white nav-user-name">{{ Auth::user()->fname}} {{ Auth::user()->lname}}</h5>
+                                   
+                                    @else
+                                    <h5 class="mb-0 text-white nav-user-name">Not Logged In</h5>
+
+                                    @endauth
+                                   @endif
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                             
+                                @if (Route::has('login'))
+                                    @auth
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <a class="dropdown-item" href="/logout" onclick="event.preventDefault(); this.closest('form').submit();" type="button">
+                                            <i class="fas fa-power-off mr-2"></i>
+                                            Logout
+                                        </a>
+                                    </form>
+                                
+                                    @else
+                                    
+                                      <a class="dropdown-item" href="/admin/login"> <i class="fas fa-power-off mr-2"></i>Login</a>
+                                    
+                                    @endauth
+                                    @endif
                             </div>
                         </li>
                     </ul>
@@ -177,6 +202,7 @@
     <script src="/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="/assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="/assets/libs/js/dashboard-ecommerce.js"></script>
+    
 </body>
  
 </html>

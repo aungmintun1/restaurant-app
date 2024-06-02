@@ -35,7 +35,8 @@
     <!-- ============================================================== -->
     <!-- signup form  -->
     <!-- ============================================================== -->
-    <form class="splash-container">
+    <form class="splash-container" method="POST" action="{{ route('register') }}">
+        @csrf
         <div class="card">
             <div class="card-header">
                 <h3 class="mb-1">Registrations Form</h3>
@@ -43,16 +44,26 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <input class="form-control form-control-lg" type="text" name="nick" required="" placeholder="Username" autocomplete="off">
+                    <input class="form-control form-control-lg" placeholder="First Name"
+                    id="fname" class="block mt-1 w-full" type="text" name="fname" value="{{old('fname')}}" required autofocus>
+                    <span style="color: red;">@error('fname') {{$message}} @enderror</span>
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" type="email" name="email" required="" placeholder="E-mail" autocomplete="off">
+                    <input class="form-control form-control-lg" placeholder="Last Name"
+                    id="lname" class="block mt-1 w-full" type="text" name="lname" value="{{old('lname')}}" required autofocus>
+                    <span style="color: red;">@error('lname') {{$message}} @enderror</span>
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" id="pass1" type="password" required="" placeholder="Password">
+                    <input class="form-control form-control-lg" placeholder="Email address" id="email" type="text" name="email" value="{{old('email')}}" required autofocus>
+                    <span style="color: red;">@error('email') {{$message}} @enderror</span>
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" required="" placeholder="Confirm">
+                    <input class="form-control form-control-lg"  placeholder="Enter password" id="password" type="password" name="password" value="{{old('password')}}" required autofocus>
+                    <span style="color: red;">@error('password') {{$message}} @enderror</span>
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" placeholder="Confirm Password" id="password_confirmation" type="password" name="password_confirmation" value="{{old('password_confirmation')}}" required autofocus>
+                    <span style="color: red;">@error('password_confirmation') {{$message}} @enderror</span>
                 </div>
                 <div class="form-group pt-2">
                     <button class="btn btn-block btn-primary" type="submit">Register My Account</button>

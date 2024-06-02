@@ -93,6 +93,16 @@ body {
                 }
             }
         }
+        .sidemenu-link{
+            font-size: 1.1rem;
+            color: black;
+            font-weight: 700;
+            text-decoration: none;
+            margin-bottom: 1.4rem;
+            display: block;
+            transition: color 0.3s ease-in-out;
+
+        }
         .social-icons {
             display: flex;
             a {

@@ -36,18 +36,26 @@
         <div class="card ">
             <div class="card-header text-center"><a href="/index.html"><img class="logo-img" src="/assets/images/logo.png" alt="logo"></a><span class="splash-description">Please enter your user information.</span></div>
             <div class="card-body">
-                <form>
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="username" type="text" placeholder="Username" autocomplete="off">
+                        <input class="form-control form-control-lg" autocomplete="off"
+                        placeholder="Email address" id="email" type="email" name="email" value="aung@gmail.com" required autofocus>
+                        <span style="color: red;">@error('email') {{$message}} @enderror</span>
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="password" type="password" placeholder="Password">
+                        <input class="form-control form-control-lg" placeholder="Password" id="password" class="block mt-1 w-full"
+                         type="password" name="password" required autocomplete="current-password" value="password">
+                         <span style="color: red;">@error('password') {{$message}} @enderror</span>
                     </div>
+
                     <div class="form-group">
                         <label class="custom-control custom-checkbox">
                             <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
                         </label>
                     </div>
+                    <p>aung@gmail.com</p>
+                    <p>password</p>
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
             </div>

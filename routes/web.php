@@ -36,6 +36,7 @@ Route::get('/admin/customers/reservations', [CustomersController::class, 'allRes
 //users
 Route::get('/admin/users', [UsersController::class, 'index']);
 Route::get('/admin/users/create', [UsersController::class, 'create']);
+Route::post('/admin/users', [UsersController::class, 'store']);
 Route::get('/admin/users/{id}/edit', [UsersController::class, 'edit']);
 
 
@@ -53,9 +54,9 @@ Route::get('admin/register', function () {
 });
 
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
