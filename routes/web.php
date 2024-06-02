@@ -1,34 +1,61 @@
 <?php
 
+use App\Http\Controllers\admin\CustomersController;
+use App\Http\Controllers\admin\FoodItemsController;
+use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StaticPagesController;
+use App\Http\Controllers\Admin\FoodCategoriesController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/about', function () {
-    return view('pages.about');
-});
-Route::get('/contact', function () {
-    return view('pages.contact');
-});
-Route::get('/reservations', function () {
-    return view('pages.reservations');
-});
-Route::get('/offers', function () {
-    return view('pages.offers');
+
+// Static Pages
+Route::get('/', [StaticPagesController::class, 'home']);
+Route::get('/menu', [StaticPagesController::class, 'menu']);
+Route::get('/menu/{slug}', [StaticPagesController::class, 'singleMenu']);
+Route::get('/about', [StaticPagesController::class, 'about']);
+Route::get('/reservations', [StaticPagesController::class, 'reservations']);
+Route::get('/contact', [StaticPagesController::class, 'contact']);
+Route::get('/offers', [StaticPagesController::class, 'offers']);
+
+//food-categories
+Route::get('/admin/food-categories', [FoodCategoriesController::class, 'index']);
+Route::get('/admin/food-categories/create', [FoodCategoriesController::class, 'create']);
+Route::get('/admin/food-categories/{id}/edit', [FoodCategoriesController::class, 'edit']);
+
+//food-items
+Route::get('/admin/food-items', [FoodItemsController::class, 'index']);
+Route::get('/admin/food-items/create', [FoodItemsController::class, 'create']);
+Route::get('/admin/food-items/{id}/edit', [FoodItemsController::class, 'edit']);
+
+//Customers
+Route::get('/admin/customers/offers-members', [CustomersController::class, 'allOffersMembers']);
+Route::get('/admin/customers/reservations', [CustomersController::class, 'allReservations']);
+
+//users
+Route::get('/admin/users', [UsersController::class, 'index']);
+Route::get('/admin/users/create', [UsersController::class, 'create']);
+Route::get('/admin/users/{id}/edit', [UsersController::class, 'edit']);
+
+
+
+
+//Admin
+Route::get('/admin', [AdminController::class, 'dashboard']);
+
+Route::get('admin/login', function () {
+    return view('admin.login');
 });
 
-Route::get('/menu', function () {
-    return view('menu.all-categories');
-});
-Route::get('/menu/{slug}', function () {
-    return view('menu.single-menu');
+Route::get('admin/register', function () {
+    return view('admin.register');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,3 +64,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+

@@ -9,8 +9,13 @@ export default defineConfig({
                 'resources/sass/app.scss',  // Add your SASS file here
                 'resources/js/app.js',
             ],
-            refresh: true,
+            refresh: [
+                'resources/views/**/*.blade.php', // Watch Blade files for changes
+                'resources/css/**/*.css',         // Optional: Watch CSS files
+                'resources/sass/**/*.scss',       // Optional: Watch SCSS files
+            ],
         }),
+        
     ],
     css: {
         preprocessorOptions: {
