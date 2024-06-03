@@ -36,35 +36,41 @@
                     <div class="card">
                         <h5 class="card-header">Edit New User</h5>
                         <div class="card-body">
-                            <form action="#" id="basicform" data-parsley-validate="" novalidate="">
+                            <form id="basicform" method="POST" action="/admin/users/{{$user->id}}">
+                                @csrf
+                                @method('PUT')
 
                                 <div class="form-group">
-                                    <label for="inputfirstname">First Name</label>
-                                    <input id="inputfirstname" type="text" name="fname" data-parsley-trigger="change" required="" placeholder="Enter First Name"
-                                    autocomplete="off" class="form-control">
+                                    <input class="form-control form-control-lg" placeholder="First Name"
+                                    id="fname" class="block mt-1 w-full" type="text" name="fname" value="{{$user->fname}}" required autofocus>
+                                    <span style="color: red;">@error('fname') {{$message}} @enderror</span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputlasttname">Last Name</label>
-                                    <input id="inputlastname" type="text" name="'lname" data-parsley-trigger="change" required="" placeholder="Enter Last Name"
-                                    autocomplete="off" class="form-control">
+                                    <input class="form-control form-control-lg" placeholder="Last Name"
+                                    id="lname" class="block mt-1 w-full" type="text" name="lname" value="{{$user->lname}}" required autofocus>
+                                    <span style="color: red;">@error('lname') {{$message}} @enderror</span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputemail">Email</label>
-                                    <input id="inputemail" type="email" name="email" data-parsley-trigger="change" required="" placeholder="Enter Email"
-                                    autocomplete="off" class="form-control">
+                                    <input class="form-control form-control-lg" placeholder="Email address" id="email" type="text" name="email" value="{{$user->email}}" required autofocus>
+                                    <span style="color: red;">@error('email') {{$message}} @enderror</span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputpassword">Password</label>
-                                    <input id="inputpassword" type="password" name="password" data-parsley-trigger="change" required="" placeholder="Enter Password"
-                                    autocomplete="off" class="form-control">
+                                    <input class="form-control form-control-lg"  placeholder="Enter password" id="password" type="password" name="password" value="password" required autofocus>
+                                    <span style="color: red;">@error('password') {{$message}} @enderror</span>
                                 </div>
+                                <div class="form-group">
+                                    <input class="form-control form-control-lg" placeholder="Confirm Password" id="password_confirmation" type="password" value="password" name="password_confirmation"  required autofocus>
+                                    <span style="color: red;">@error('password_confirmation') {{$message}} @enderror</span>
+                                </div>
+                              
                                 <div class="form-group">
                                  <label for="inputrole">Role</label>
-                                  <select class="form-control" id="inputrole">
-                                    <option value="admin">Admin</option>
-                                    <option value="employee">Employee</option>
+                                  <select class="form-control" id="inputrole" name="role_id">
+                                    <option value="1" @if ($role == 1) selected @endif>Admin</option>
+                                    <option value="2" @if ($role == 2) selected @endif>Employee</option>
                                   </select>
                                 </div>
+                                
                                 
 
                               

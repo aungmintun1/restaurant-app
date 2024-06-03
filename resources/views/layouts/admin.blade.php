@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/libs/css/style.css">
     <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
@@ -16,8 +15,9 @@
     <link rel="stylesheet" href="/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+
 </head>
 
 <body>

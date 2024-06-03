@@ -53,7 +53,14 @@
                                           <td>{{$user->email}}</td>
                                           <td>{{date('m/d/Y', strtotime($user->updated_at))}}</td>
                                           <td><a href="/admin/users/{{$user->id}}/edit"><i class="far fa-edit"></i></a></td>
-                                          <td><a href="/admin/users/{{$user->id}}/delete" onclick="if (!confirm('Are you sure you want delete category?')) {return false;}"><i class="far fa-trash-alt"></i></a></td>
+                                          {{-- <td><a href="/admin/users/{{$user->id}}" onclick="if (!confirm('Are you sure you want delete category?')) {return false;}"><i class="far fa-trash-alt"></i></a></td> --}}
+                                          <td>
+                                          <form  method="POST" action="/admin/users/{{$user->id}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="/admin/users/{{$user->id}}" onclick="event.preventDefault(); this.closest('form').submit();"><i class="far fa-trash-alt"></i></a>
+                                          </form>
+                                          </td>  
                                       </tr>
                                         
                                     @endforeach
@@ -63,7 +70,7 @@
 
                             </table>
                         
-                            {{$users->links()}}
+                            {{-- {{$users->links()}} --}}
                               
                         </div>
                         </div>

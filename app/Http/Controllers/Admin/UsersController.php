@@ -13,7 +13,8 @@ class UsersController extends Controller
 {
     
     public function index(){
-        $users = User::paginate(1);
+        // $users = User::paginate(1);
+        $users=User::All();
         return view('admin/users/all',[
             'users'=>$users
         ]);
@@ -34,7 +35,43 @@ class UsersController extends Controller
         return redirect('/admin/users');
 
     }
-    public function edit(){
-        return view('admin/users/edit');
+    public function edit($id){
+
+        $user = User::find($id);
+        $role = $user->roles[0]->pivot->role_id;
+
+        return view('admin/users/edit',[
+           'user'=>$user,
+           'role'=>$role
+       ]);
+     }
+    
+     public function update($id)
+    {
+        $user = User::find($id);
+        
+        $user->fname = request('fname');
+        $user->lname = request('lname');
+        $user->email = request('email');
+        $user->password = Hash::make(request('password'));
+        $user->save(); 
+        $user->roles()->attach(request('role_id'));
+
+
+        return redirect('/admin/users');
     }
+
+    public function destroy($id)
+    {
+        $user=User::find($id);
+
+        $user->roles()->detach();
+        //unattach the role Model away from this user
+
+        $user->delete();
+
+        return redirect('/admin/users');
+    
+    }
+
 }
